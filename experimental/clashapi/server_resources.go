@@ -77,6 +77,7 @@ func (s *Server) downloadExternalUI() error {
 	if response.StatusCode != http.StatusOK {
 		return E.New("download external ui failed: ", response.Status)
 	}
+	removeAllInDirectory(s.externalUI)
 	err = s.downloadZIP(response.Body, s.externalUI)
 	if err != nil {
 		removeAllInDirectory(s.externalUI)
